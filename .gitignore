@@ -1,0 +1,10 @@
+.idea/
+out
+*.xml
+*.iml
+*.json
+*.csv
+*.class
+*.orig
+.gradle
+!gradle-wrapper.properties
