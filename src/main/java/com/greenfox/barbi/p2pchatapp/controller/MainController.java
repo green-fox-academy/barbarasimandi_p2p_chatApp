@@ -1,15 +1,13 @@
 package com.greenfox.barbi.p2pchatapp.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
+@Controller
 public class MainController {
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @GetMapping(value = "/index")
   public String hello() {
-    return "Hi!";
+    return "index";
   }
-
 }
