@@ -10,7 +10,7 @@ public class MainController {
 
   @GetMapping(value = "/index")
   public String index(HttpServletRequest request) {
-    System.out.println(new Log(request));
+    System.out.println(new Log(request).toString());
     return "index";
   }
 }

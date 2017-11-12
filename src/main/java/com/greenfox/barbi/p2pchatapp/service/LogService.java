@@ -10,7 +10,7 @@ public class LogService {
   public void checkEnvironment(HttpServletRequest request, Exception exception) {
 
    if (System.getenv("CHAT_APP_LOGLEVEL").equals("INFO")) {
-     System.out.println(new Log(request));
+     System.out.println(new Log(request).toString());
     }
     else if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
      if (exception != null) {
