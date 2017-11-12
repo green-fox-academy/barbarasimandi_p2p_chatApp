@@ -17,8 +17,8 @@ public class RestController {
   LogRepository logRepository;
 
   @GetMapping(value = "/")
-  public void log(HttpServletRequest request, Exception exception) {
-    logService.checkEnvironment(request, exception);
+  public void log(HttpServletRequest request) {
+    logService.checkEnvironment(request);
     Log log = new Log(request);
     logRepository.save(log);
 
