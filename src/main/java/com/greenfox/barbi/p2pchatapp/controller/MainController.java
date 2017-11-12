@@ -1,5 +1,7 @@
 package com.greenfox.barbi.p2pchatapp.controller;
 
+import com.greenfox.barbi.p2pchatapp.model.Log;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
   @GetMapping(value = "/index")
-  public String hello() {
+  public String index(HttpServletRequest request) {
+    System.out.println(new Log(request));
     return "index";
   }
 }
