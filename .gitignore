@@ -1,10 +1,17 @@
 .idea
+
 out
+
 *.xml
+
 *.iml
+
 *.class
+
 # for mac users
+
 .DS_Store
+
 .gradle
+
 !gradle-wrapper.properties
-Add Comment Collapse
