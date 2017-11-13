@@ -16,7 +16,7 @@ public class RestController {
   @Autowired
   LogRepository logRepository;
 
-  @GetMapping(value = "/")
+  @GetMapping(value = "/index")
   public void log(HttpServletRequest request) {
     logService.checkEnvironment(request);
     Log log = new Log(request);

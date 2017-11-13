@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="UTF-8"/>
+  <title>Enter</title>
 </head>
 <body>
-$END$
+<h1>Enter</h1>
+<form action="/enter/user">
+  <label for="username">Choose your name</label>
+  <input type="text" id="username" name="userName"/>
+  <button type="submit">Enter</button>
+</form>
 </body>
 </html>
