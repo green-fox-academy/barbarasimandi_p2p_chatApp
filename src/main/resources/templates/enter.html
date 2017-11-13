@@ -5,7 +5,7 @@
   <title>Enter</title>
 </head>
 <body>
-<h2 th:text="${noUserName} != null ? ${noUserName.error} : 'blah'"></h2>
+<h2 th:text="${noUserName} != null ? ${noUserName.error} : ''"></h2>
 <h1>Enter</h1>
 <form action="/enter/user">
   <label for="username">Choose your name</label>

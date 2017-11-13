@@ -37,11 +37,14 @@ public class MainController {
   }
 
   @GetMapping(value = "/enter/user")
-  public String enter(
-      @RequestParam(required = true) String userName, HttpServletRequest request, Model model) {
+  public String enter(@RequestParam String userName, HttpServletRequest request, Model model) {
     logService.checkEnvironment(request);
     Log log = new Log(request);
     logRepository.save(log);
+
+    if (chatUserRepository.findOne(userName) != null) {
+      return "redirect:/";
+    }
 
     if (!userName.equals("")) {
       ChatUser user = new ChatUser(userName);
