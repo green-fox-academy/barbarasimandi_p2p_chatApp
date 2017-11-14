@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Log {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  Long id;
 
   String path;
   String method;
@@ -22,11 +21,16 @@ public class Log {
   String param;
 
   public Log(HttpServletRequest request) {
+    this.id = (long)(1000 + Math.random() * 10000);
     this.path = request.getServletPath();
     this.method = request.getMethod();
     this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     this.level = System.getenv("CHAT_APP_LOGLEVEL");
     this.param = request.getQueryString();
+  }
+
+  public Log() {
+
   }
 
   public Long getId() {

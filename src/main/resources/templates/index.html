@@ -6,10 +6,13 @@
 </head>
 <body>
 <h1>Peer to Peer Chat Program</h1>
-<form th:if="${user} != null" th:action="@{/update}">
+
+<form th:action="@{/update}" method="post" th:object="${user}">
   <label for="Your username">Your username:</label>
-  <input type="text" id="Your username" name="userName" th:placeholder="${user.getUserName()}"/>
+  <input th:type="hidden" th:field="*{id}" />
+  <input type="text" id="Your username" th:field="*{userName}" th:placeholder="*{userName}"/>
   <button type="submit">update</button>
 </form>
+
 </body>
 </html>
