@@ -14,5 +14,21 @@
   <button type="submit">update</button>
 </form>
 
+<ul>
+  <li>App</li>
+  <p>Hi there! Submit your message using the send button!</p>
+</ul>
+<ul th:each="message : ${messages}">
+  <li th:hidden="${message.id}"></li>
+  <li th:text="${message.user.getUserName()}"></li>
+  <p th:text="${message.text}"></p>
+</ul>
+
+<form th:action="@{/newMessage}" method="post" th:object="${message}">
+  <input th:type="hidden" th:value="${message.id}" />
+  <textarea type="text" th:field="*{text}" name="message"></textarea>
+  <button type="submit">Send</button>
+</form>
+
 </body>
 </html>

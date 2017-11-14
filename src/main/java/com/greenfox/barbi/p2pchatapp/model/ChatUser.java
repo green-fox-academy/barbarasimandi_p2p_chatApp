@@ -2,6 +2,7 @@ package com.greenfox.barbi.p2pchatapp.model;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,13 +17,13 @@ public class ChatUser {
 
     String userName;
 
-//    @OneToMany
-//    List<Message> messages;
-//
-//    public ChatUser(String userName, List<Message> messages) {
-//        this.messages = messages;
-//        this.userName = userName;
-//    }
+    @OneToMany(fetch = FetchType.EAGER)
+    List<Message> messages;
+
+    public ChatUser(String userName, List<Message> messages) {
+        this.messages = messages;
+        this.userName = userName;
+    }
 
     public ChatUser(String userName) {
         this.userName = userName;
@@ -47,11 +48,11 @@ public class ChatUser {
         this.userName = userName;
     }
 
-//    public List<Message> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(List<Message> messages) {
-//        this.messages = messages;
-//    }
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 }
