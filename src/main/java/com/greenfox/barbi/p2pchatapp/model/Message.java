@@ -1,5 +1,6 @@
 package com.greenfox.barbi.p2pchatapp.model;
 
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,16 +22,21 @@ public class Message {
 
   String text;
 
+  Timestamp timestamp;
+
   public Message(ChatUser user, String text) {
     this.user = user;
     this.text = text;
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public Message(String text) {
     this.text = text;
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public Message() {
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public int getId() {
@@ -55,5 +61,13 @@ public class Message {
 
   public void setText(String text) {
     this.text = text;
+  }
+
+  public Timestamp getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
   }
 }

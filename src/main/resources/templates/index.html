@@ -20,6 +20,7 @@
 </ul>
 <ul th:each="message : ${messages}">
   <li th:hidden="${message.id}"></li>
+  <li th:hidden="${message.timestamp}"></li>
   <li th:text="${message.user.getUserName()}"></li>
   <p th:text="${message.text}"></p>
 </ul>
