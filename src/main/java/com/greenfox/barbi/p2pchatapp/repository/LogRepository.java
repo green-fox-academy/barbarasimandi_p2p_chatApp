@@ -1,5 +1,6 @@
 package com.greenfox.barbi.p2pchatapp.repository;
 
+import com.greenfox.barbi.p2pchatapp.model.ChatUser;
 import com.greenfox.barbi.p2pchatapp.model.Log;
 import org.springframework.data.repository.CrudRepository;
 

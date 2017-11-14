@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -30,8 +28,13 @@ public class MainController {
 
   @GetMapping(value = "/")
   public String index(@RequestParam(required = false) String userName, Model model) {
-    model.addAttribute("user", chatUserRepository.findOne(userName));
-    return "index";
+    if (userName != null) {
+      model.addAttribute("user", chatUserRepository.findOne(userName));
+      return "index";
+    }
+    else {
+      return "redirect:/enter";
+    }
   }
 
   @GetMapping(value = "/enter")
@@ -53,7 +56,8 @@ public class MainController {
     if (!userName.equals("")) {
       ChatUser user = new ChatUser(userName);
       chatUserRepository.save(user);
-    } else {
+    }
+    else if (userName.equals("")){
       model.addAttribute("noUserName", new UserException());
     }
     return "enter";

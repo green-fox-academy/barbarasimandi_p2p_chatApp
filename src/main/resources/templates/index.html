@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Peer to Peer Chat Program</h1>
-<form th:action="@{/update}">
+<form th:if="${user} != null" th:action="@{/update}">
   <label for="Your username">Your username:</label>
-  <input type="text" id="Your username" name="userName" th:placeholder="${user} != null ? ${user.getUserName()} : ''"/>
+  <input type="text" id="Your username" name="userName" th:placeholder="${user.getUserName()}"/>
   <button type="submit">update</button>
 </form>
 </body>
