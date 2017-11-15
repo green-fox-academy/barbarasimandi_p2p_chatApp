@@ -21,12 +21,13 @@
 <ul th:each="message : ${messages}">
   <li th:hidden="${message.id}"></li>
   <li th:hidden="${message.timestamp}"></li>
-  <li th:text="${message.user.getUserName()}"></li>
+  <li th:text="${message.userName}"></li>
   <p th:text="${message.text}"></p>
 </ul>
 
 <form th:action="@{/newMessage}" method="post" th:object="${message}">
   <input th:type="hidden" th:value="${message.id}" />
+  <input th:type="hidden" th:value="${message.userName}" />
   <textarea type="text" th:field="*{text}" name="message"></textarea>
   <button type="submit">Send</button>
 </form>

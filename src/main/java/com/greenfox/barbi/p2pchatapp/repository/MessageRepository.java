@@ -6,5 +6,5 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 public interface MessageRepository extends CrudRepository <Message, Integer> {
-  List<Message> findByUser(ChatUser user);
+//  List<Message> findByUser(ChatUser user);
 }

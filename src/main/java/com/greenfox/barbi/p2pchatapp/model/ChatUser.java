@@ -17,13 +17,13 @@ public class ChatUser {
 
     String userName;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    List<Message> messages;
+//    @OneToMany(fetch = FetchType.EAGER)
+//    List<Message> messages;
 
-    public ChatUser(String userName, List<Message> messages) {
-        this.messages = messages;
-        this.userName = userName;
-    }
+//    public ChatUser(String userName, List<Message> messages) {
+//        this.messages = messages;
+//        this.userName = userName;
+//    }
 
     public ChatUser(String userName) {
         this.userName = userName;
@@ -48,11 +48,11 @@ public class ChatUser {
         this.userName = userName;
     }
 
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
+//    public List<Message> getMessages() {
+//        return messages;
+//    }
+//
+//    public void setMessages(List<Message> messages) {
+//        this.messages = messages;
+//    }
 }

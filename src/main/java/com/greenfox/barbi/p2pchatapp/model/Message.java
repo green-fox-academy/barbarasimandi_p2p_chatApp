@@ -13,29 +13,28 @@ import javax.persistence.ManyToOne;
 public class Message {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   int id;
 
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "chat_user_id")
-  ChatUser user;
+//  @ManyToOne(fetch = FetchType.EAGER)
+//  @JoinColumn(name = "chat_user_id")
+//  ChatUser user;
+
+  String userName;
 
   String text;
 
   Timestamp timestamp;
 
-  public Message(ChatUser user, String text) {
-    this.user = user;
-    this.text = text;
-    this.timestamp = new Timestamp(System.currentTimeMillis());
-  }
-
-  public Message(String text) {
+  public Message(String userName, String text) {
+    this.id = (int) (1000000 + (Math.random() * 8999999));
+    this.userName = userName;
     this.text = text;
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public Message() {
+    this.id = (int) (1000000 + (Math.random() * 8999999));
+    this.userName = "barbarasimandi";
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
@@ -47,12 +46,20 @@ public class Message {
     this.id = id;
   }
 
-  public ChatUser getUser() {
-    return user;
+//  public ChatUser getUser() {
+//    return user;
+//  }
+//
+//  public void setUser(ChatUser user) {
+//    this.user = user;
+//  }
+
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUser(ChatUser user) {
-    this.user = user;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public String getText() {
@@ -70,4 +77,14 @@ public class Message {
   public void setTimestamp(Timestamp timestamp) {
     this.timestamp = timestamp;
   }
+
+//  @Override
+//  public String toString() {
+//    return "message: {" + "\n" +
+//        "id" + this.getId() + "\n" +
+//        "username" + this.user.getUserName() + "\n" +
+//        "text" + this.getText() + "\n" +
+//        "timestamp" + this.getTimestamp() + "\n" +
+//        "}";
+//  }
 }

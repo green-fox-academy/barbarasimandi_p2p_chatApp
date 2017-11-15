@@ -88,7 +88,7 @@ public class MainController {
 
   @PostMapping(value = "/newMessage")
   public String sendMessage(@ModelAttribute Message message) {
-    messageRepository.save(new Message(chatUserService.findFirst(), message.getText()));
+    messageRepository.save(new Message(chatUserService.findFirst().getUserName(), message.getText()));
     return "redirect:/";
   }
 }
