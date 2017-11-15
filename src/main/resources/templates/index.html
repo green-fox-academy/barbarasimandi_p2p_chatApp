@@ -10,7 +10,7 @@
 <form th:action="@{/update}" method="post" th:object="${user}">
   <label for="Your username">Your username:</label>
   <input th:type="hidden" th:field="*{id}" />
-  <input type="text" id="Your username" th:field="*{userName}" th:placeholder="*{userName}"/>
+  <input type="text" id="Your username" th:field="*{username}" th:placeholder="*{username}"/>
   <button type="submit">update</button>
 </form>
 
@@ -21,13 +21,13 @@
 <ul th:each="message : ${messages}">
   <li th:hidden="${message.id}"></li>
   <li th:hidden="${message.timestamp}"></li>
-  <li th:text="${message.userName}"></li>
+  <li th:text="${message.username}"></li>
   <p th:text="${message.text}"></p>
 </ul>
 
 <form th:action="@{/newMessage}" method="post" th:object="${message}">
   <input th:type="hidden" th:value="${message.id}" />
-  <input th:type="hidden" th:value="${message.userName}" />
+  <input th:type="hidden" th:value="${message.username}" />
   <textarea type="text" th:field="*{text}" name="message"></textarea>
   <button type="submit">Send</button>
 </form>

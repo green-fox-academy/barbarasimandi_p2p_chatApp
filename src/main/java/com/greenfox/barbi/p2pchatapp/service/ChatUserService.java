@@ -14,4 +14,12 @@ public class ChatUserService {
   public ChatUser findFirst() {
     return chatUserRepository.findOne(1l);
   }
+
+  public Iterable<ChatUser> getUsers() {
+    return chatUserRepository.findAll();
+  }
+
+  public void save(ChatUser user) {
+    chatUserRepository.save(user);
+  }
 }

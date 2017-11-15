@@ -13,8 +13,9 @@ public class AnswerStatus {
   String message;
 
   public AnswerStatus(HttpServletResponse response) {
-    this.status = response.getStatus() == 200 ? "ok" : "error";
-    this.message = status.equals("error") ? "Missing field(s): " + response.getContentType() : "";
+    this.status = response.getStatus() != 200 ? "error" : "ok";
+    this.message = status.equals("error") ? "Missing field(s): "
+        + response.getHeaderNames().toString() : null;
   }
 
   public AnswerStatus() {

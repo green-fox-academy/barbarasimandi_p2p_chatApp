@@ -26,9 +26,6 @@ import static org.codehaus.groovy.runtime.DefaultGroovyMethods.size;
 public class MainController {
 
   @Autowired
-  ChatUserRepository chatUserRepository;
-
-  @Autowired
   ChatUserService chatUserService;
 
   @Autowired
@@ -48,7 +45,7 @@ public class MainController {
     ChatUser first = chatUserService.findFirst();
     Iterable<Message> messages = messageRepository.findAll();
 
-    if (size(chatUserRepository.findAll()) != 0 && (!first.getUserName().equals(""))) {
+    if (size(chatUserService.getUsers()) != 0) {
       model.addAttribute("user", first);
       model.addAttribute("messages", messages);
       model.addAttribute("message", new Message());
@@ -60,35 +57,36 @@ public class MainController {
   }
 
   @GetMapping(value = "/enter")
-  public String enter() {
+  public String enter(Model model) {
+    model.addAttribute("noUserName", new UserException());
+    model.addAttribute("newUser", new ChatUser());
     return "enter";
   }
 
   @PostMapping(value = "/save")
-  public String enter(Model model, HttpServletRequest request, @RequestParam String userName) {
+  public String enter(HttpServletRequest request, @ModelAttribute ChatUser chatUser) {
     logService.checkEnvironment(request);
     Log log = new Log(request);
     logRepository.save(log);
 
-    if (!userName.equals("")) {
-      chatUserRepository.save(new ChatUser(userName));
-      return "redirect:/";
+    if (chatUser.equals(null)) {
+      return "redirect:/enter";
     }
     else {
-      model.addAttribute("noUserName", new UserException());
-      return "enter";
+      chatUserService.save(chatUser);
+      return "redirect:/";
     }
   }
 
   @PostMapping(value = "/update")
-  public String updateUser(@ModelAttribute ChatUser user) {
-    chatUserRepository.save(user);
+  public String updateUser(@ModelAttribute ChatUser chatUser) {
+    chatUserService.save(chatUser);
     return "redirect:/";
   }
 
   @PostMapping(value = "/newMessage")
   public String sendMessage(@ModelAttribute Message message) {
-    messageRepository.save(new Message(chatUserService.findFirst().getUserName(), message.getText()));
+    messageRepository.save(new Message(chatUserService.findFirst().getUsername(), message.getText()));
     return "redirect:/";
   }
 }

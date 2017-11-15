@@ -8,9 +8,10 @@
 <h2 th:text="${noUserName} != null ? ${noUserName.error} : ''"></h2>
 <h1>Enter</h1>
 
-<form th:action="@{/save}" method="post">
+<form th:action="@{/save}" method="post" th:object="${newUser}">
   <label for="username">Choose your name</label>
-  <input type="text" id="username" name="userName"/>
+  <input type="hidden" th:field="*{id}"/>
+  <input type="text" id="username" th:field="*{username}"/>
   <button type="submit">Enter</button>
 </form>
 

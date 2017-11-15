@@ -19,22 +19,22 @@ public class Message {
 //  @JoinColumn(name = "chat_user_id")
 //  ChatUser user;
 
-  String userName;
+  String username;
 
   String text;
 
   Timestamp timestamp;
 
-  public Message(String userName, String text) {
+  public Message(String username, String text) {
     this.id = (int) (1000000 + (Math.random() * 8999999));
-    this.userName = userName;
+    this.username = username;
     this.text = text;
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public Message() {
     this.id = (int) (1000000 + (Math.random() * 8999999));
-    this.userName = "barbarasimandi";
+    this.username = "barbarasimandi";
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
@@ -54,12 +54,12 @@ public class Message {
 //    this.user = user;
 //  }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String userName) {
+    this.username = userName;
   }
 
   public String getText() {
