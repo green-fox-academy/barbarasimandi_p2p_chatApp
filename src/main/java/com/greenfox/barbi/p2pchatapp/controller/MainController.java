@@ -1,9 +1,12 @@
 package com.greenfox.barbi.p2pchatapp.controller;
 
 import com.greenfox.barbi.p2pchatapp.exception.UserException;
+import com.greenfox.barbi.p2pchatapp.model.AnswerStatus;
 import com.greenfox.barbi.p2pchatapp.model.ChatUser;
+import com.greenfox.barbi.p2pchatapp.model.Client;
 import com.greenfox.barbi.p2pchatapp.model.Log;
 import com.greenfox.barbi.p2pchatapp.model.Message;
+import com.greenfox.barbi.p2pchatapp.model.Received;
 import com.greenfox.barbi.p2pchatapp.repository.ChatUserRepository;
 import com.greenfox.barbi.p2pchatapp.repository.LogRepository;
 import com.greenfox.barbi.p2pchatapp.repository.MessageRepository;
@@ -20,6 +23,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
 import static org.codehaus.groovy.runtime.DefaultGroovyMethods.size;
 
 @Controller
@@ -87,6 +92,9 @@ public class MainController {
   @PostMapping(value = "/newMessage")
   public String sendMessage(@ModelAttribute Message message) {
     messageRepository.save(new Message(chatUserService.findFirst().getUsername(), message.getText()));
+    RestTemplate restTemplate = new RestTemplate();
+    Received received = new Received(message, new Client());
+    AnswerStatus answer = restTemplate.postForObject("https://cryptic-badlands-53822.herokuapp.com/api/message/receive", received, AnswerStatus.class);
     return "redirect:/";
   }
 }

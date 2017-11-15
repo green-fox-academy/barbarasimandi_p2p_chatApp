@@ -2,8 +2,6 @@ package com.greenfox.barbi.p2pchatapp.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class AnswerStatus {
 
@@ -12,10 +10,13 @@ public class AnswerStatus {
   @JsonInclude(Include.NON_NULL)
   String message;
 
-  public AnswerStatus(HttpServletResponse response) {
-    this.status = response.getStatus() != 200 ? "error" : "ok";
-    this.message = status.equals("error") ? "Missing field(s): "
-        + response.getHeaderNames().toString() : null;
+  public AnswerStatus(String status, String message) {
+    this.status = status;
+    this.message = message;
+  }
+
+  public AnswerStatus(String status) {
+    this.status = status;
   }
 
   public AnswerStatus() {
