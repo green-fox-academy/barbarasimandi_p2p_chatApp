@@ -94,7 +94,7 @@ public class MainController {
     messageRepository.save(new Message(chatUserService.findFirst().getUsername(), message.getText()));
     RestTemplate restTemplate = new RestTemplate();
     Received received = new Received(message, new Client());
-    AnswerStatus answer = restTemplate.postForObject("https://bekobarnachatapp.herokuapp.com/api/message/receive", received, AnswerStatus.class);
+    AnswerStatus answer = restTemplate.postForObject("https://salankiv-p2pchat.herokuapp.com/api/message/receive", received, AnswerStatus.class);
     return "redirect:/";
   }
 }
