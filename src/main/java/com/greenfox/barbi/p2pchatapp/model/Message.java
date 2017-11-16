@@ -34,6 +34,7 @@ public class Message {
 
   public Message() {
     this.id = (int) (1000000 + (Math.random() * 8999999));
+    this.username = "barbarasimandi";
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
