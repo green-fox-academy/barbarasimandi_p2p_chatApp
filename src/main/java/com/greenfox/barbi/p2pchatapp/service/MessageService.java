@@ -27,9 +27,10 @@ public class MessageService {
   }
 
   public void sendMessage(Message message) {
-    RestTemplate restTemplate = new RestTemplate();
     Received received = new Received(message, new Client());
-    AnswerStatus answer = restTemplate.postForObject("https://dzsofap2p.herokuapp.com/api/message/receive", received, AnswerStatus.class);
+    RestTemplate restTemplate = new RestTemplate();
+    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
+    AnswerStatus answer = restTemplate.postForObject(url, received, AnswerStatus.class);
   }
 
 }
