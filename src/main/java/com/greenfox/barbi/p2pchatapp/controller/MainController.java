@@ -91,10 +91,9 @@ public class MainController {
 
   @PostMapping(value = "/newMessage")
   public String sendMessage(@ModelAttribute Message message) {
-    messageRepository.save(new Message(chatUserService.findFirst().getUsername(), message.getText()));
-    RestTemplate restTemplate = new RestTemplate();
-    Received received = new Received(message, new Client());
-    AnswerStatus answer = restTemplate.postForObject("https://dzsofap2p.herokuapp.com/api/message/receive", received, AnswerStatus.class);
+    messageService.setUser(message);
+    messageService.sendMessage(message);
+    messageRepository.save(message);
     return "redirect:/";
   }
 }
