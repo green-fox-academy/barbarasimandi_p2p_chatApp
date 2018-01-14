@@ -15,10 +15,6 @@ public class Message {
   @Id
   int id;
 
-//  @ManyToOne(fetch = FetchType.EAGER)
-//  @JoinColumn(name = "chat_user_id")
-//  ChatUser user;
-
   String username;
 
   String text;
